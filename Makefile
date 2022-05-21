@@ -1,6 +1,6 @@
 # Go parameters
 GOCMD=GO111MODULE=on go
-GOBUILD=$(GOCMD) build
+GOBUILD=$(GOCMD) build -mod=vendor
 GOTEST=$(GOCMD) test
 
 all: test build
@@ -12,6 +12,24 @@ build:
 	cp cmd/job/job-example.toml target/job.toml
 	$(GOBUILD) -o target/comet cmd/comet/main.go
 	$(GOBUILD) -o target/logic cmd/logic/main.go
+	$(GOBUILD) -o target/job cmd/job/main.go
+
+logic:
+	rm -rf target/logic
+	mkdir -p target/
+	cp cmd/logic/logic-example.toml target/logic.toml
+	$(GOBUILD) -o target/logic cmd/logic/main.go
+
+comet:
+	rm -rf target/comet
+	mkdir -p target/
+	cp cmd/comet/comet-example.toml target/comet.toml
+	$(GOBUILD) -o target/comet cmd/comet/main.go
+
+job:
+	rm -rf target/job
+	mkdir -p target/
+	cp cmd/job/job-example.toml target/job.toml
 	$(GOBUILD) -o target/job cmd/job/main.go
 
 test:
