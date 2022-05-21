@@ -31,8 +31,8 @@
         var textEncoder = new TextEncoder();
         var heartbeatInterval;
         function connect() {
-            var ws = new WebSocket('ws://sh.tony.wiki:3102/sub');
-            //var ws = new WebSocket('ws://127.0.0.1:3102/sub');
+            // var ws = new WebSocket('ws://sh.tony.wiki:3102/sub');
+            var ws = new WebSocket('ws://127.0.0.1:3102/sub');
             ws.binaryType = 'arraybuffer';
             ws.onopen = function() {
                 auth();
@@ -86,7 +86,9 @@
                 }
             }
 
-            ws.onclose = function() {
+            ws.onclose = function(evt) {
+                console.log("ws closed")
+                console.log(evt)
                 if (heartbeatInterval) clearInterval(heartbeatInterval);
                 setTimeout(reConnect, delay);
 

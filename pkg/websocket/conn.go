@@ -252,6 +252,19 @@ func (c *Conn) Close() error {
 	return c.rwc.Close()
 }
 
+func (c *Conn) FormatCloseMessage(code int, reason string) []byte {
+	if code == 1005 { // CloseNoStatusReceived
+		// Return empty message because it's illegal to send
+		// CloseNoStatusReceived. Return non-nil value in case application
+		// checks for nil.
+		return []byte{}
+	}
+	buf := make([]byte, 2+len(reason))
+	binary.BigEndian.PutUint16(buf, uint16(code))
+	copy(buf[2:], reason)
+	return buf
+}
+
 func maskBytes(key []byte, pos int, b []byte) int {
 	for i := range b {
 		b[i] ^= key[pos&3]

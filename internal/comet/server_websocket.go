@@ -256,9 +256,14 @@ func (s *Server) ServeWebsocket(conn net.Conn, rp, wp *bytes.Pool, tr *xtime.Tim
 			p.Body = nil
 			// NOTE: send server heartbeat for a long time
 			if now := time.Now(); now.Sub(lastHB) > serverHeartbeat {
-				if err1 := s.Heartbeat(ctx, ch.Mid, ch.Key); err1 == nil {
-					lastHB = now
-				}
+				// if err1 := s.Heartbeat(ctx, ch.Mid, ch.Key); err1 == nil {
+				// 	lastHB = now
+				// }
+
+				// 测试发送 CloseMessage
+				err = ws.WriteMessage(websocket.CloseMessage, ws.FormatCloseMessage(1999, "错误，测试的"))
+				log.Warning("websocket send close message")
+				break
 			}
 			if conf.Conf.Debug {
 				log.Infof("websocket heartbeat receive key:%s, mid:%d", ch.Key, ch.Mid)
