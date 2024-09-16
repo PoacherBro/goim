@@ -5,8 +5,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/Terry-Mao/goim/api/logic"
-	"github.com/Terry-Mao/goim/internal/comet/conf"
+	"github.com/PoacherBro/goim/api/logic"
+	"github.com/PoacherBro/goim/internal/comet/conf"
 	log "github.com/golang/glog"
 	"github.com/zhenjl/cityhash"
 	"google.golang.org/grpc"

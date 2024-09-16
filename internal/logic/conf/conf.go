@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
+	xtime "github.com/PoacherBro/goim/pkg/time"
 	"github.com/bilibili/discovery/naming"
-	xtime "github.com/Terry-Mao/goim/pkg/time"
 
 	"github.com/BurntSushi/toml"
 )

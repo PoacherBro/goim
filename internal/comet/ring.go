@@ -1,9 +1,9 @@
 package comet
 
 import (
-	"github.com/Terry-Mao/goim/api/protocol"
-	"github.com/Terry-Mao/goim/internal/comet/conf"
-	"github.com/Terry-Mao/goim/internal/comet/errors"
+	"github.com/PoacherBro/goim/api/protocol"
+	"github.com/PoacherBro/goim/internal/comet/conf"
+	"github.com/PoacherBro/goim/internal/comet/errors"
 	log "github.com/golang/glog"
 )
 

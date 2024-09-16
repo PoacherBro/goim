@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/Terry-Mao/goim/internal/logic/model"
+	"github.com/PoacherBro/goim/internal/logic/model"
 	log "github.com/golang/glog"
 	"github.com/gomodule/redigo/redis"
 
@@ -41,6 +41,7 @@ func (d *Dao) pingRedis(c context.Context) (err error) {
 
 // AddMapping add a mapping.
 // Mapping:
+//
 //	mid -> key_server
 //	key -> server
 func (d *Dao) AddMapping(c context.Context, mid int64, key, server string) (err error) {

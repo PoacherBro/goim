@@ -4,8 +4,8 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/PoacherBro/goim/internal/logic/model"
 	"github.com/bilibili/discovery/naming"
-	"github.com/Terry-Mao/goim/internal/logic/model"
 )
 
 func TestWeightedNode(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	pb "github.com/Terry-Mao/goim/api/logic"
-	"github.com/Terry-Mao/goim/internal/logic/model"
+	pb "github.com/PoacherBro/goim/api/logic"
+	"github.com/PoacherBro/goim/internal/logic/model"
 	"github.com/bilibili/discovery/naming"
 	log "github.com/golang/glog"
 )

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
+	"github.com/PoacherBro/goim/internal/logic/model"
 	"github.com/bilibili/discovery/naming"
-	"github.com/Terry-Mao/goim/internal/logic/model"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/PoacherBro/goim/internal/job"
+	"github.com/PoacherBro/goim/internal/job/conf"
 	"github.com/bilibili/discovery/naming"
-	"github.com/Terry-Mao/goim/internal/job"
-	"github.com/Terry-Mao/goim/internal/job/conf"
 
 	resolver "github.com/bilibili/discovery/naming/grpc"
 	log "github.com/golang/glog"

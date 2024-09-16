@@ -14,13 +14,13 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/PoacherBro/goim/internal/comet"
+	"github.com/PoacherBro/goim/internal/comet/conf"
+	"github.com/PoacherBro/goim/internal/comet/grpc"
+	md "github.com/PoacherBro/goim/internal/logic/model"
+	"github.com/PoacherBro/goim/pkg/ip"
 	"github.com/bilibili/discovery/naming"
 	resolver "github.com/bilibili/discovery/naming/grpc"
-	"github.com/Terry-Mao/goim/internal/comet"
-	"github.com/Terry-Mao/goim/internal/comet/conf"
-	"github.com/Terry-Mao/goim/internal/comet/grpc"
-	md "github.com/Terry-Mao/goim/internal/logic/model"
-	"github.com/Terry-Mao/goim/pkg/ip"
 	log "github.com/golang/glog"
 )
 
