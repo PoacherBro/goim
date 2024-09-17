@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine AS build
+FROM golang:1.22-alpine AS build
 ARG project
 ADD ./ /app/
 RUN cd /app && \
