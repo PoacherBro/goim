@@ -1,11 +1,20 @@
 version: "3.2"
 
+networks:
+  app-tier:
+    driver: bridge
+
 services:
-  discovery:
-    image: poacherbro/bilibili-discovery:v1
+  etcd0:
+    image: 'bitnami/etcd:latest'
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379
     ports:
-      - "7171:7171"
-  
+      - 2379:2379
+      - 2380:2380
+    networks:
+      - app-tier
   logic:
     image: goim/logic
     build:
@@ -19,7 +28,8 @@ services:
     depends_on:
       - redis
       - kafka
-      - discovery
+    networks:
+      - app-tier
 
   comet:
     image: goim/comet
@@ -32,8 +42,8 @@ services:
       - "3102:3102" # websocket
       - "3109:3109" # rpc
     command: /app/comet -conf=/app/comet.toml -region=sh -zone=sh001 -deploy.env=dev -weight=10 -addrs=127.0.0.1 -debug=true 2>&1 > /app/comet.log
-    depends_on:
-      - discovery
+    networks:
+      - app-tier
 
   job:
     image: goim/job
@@ -44,7 +54,8 @@ services:
     command: /app/job -conf=/app/job.toml -region=sh -zone=sh001 -deploy.env=dev 2>&1 > /app/job.log
     depends_on:
       - kafka
-      - discovery
+    networks:
+      - app-tier
 
   kafka:
     image: wurstmeister/kafka
@@ -58,16 +69,22 @@ services:
       KAFKA_CREATE_TOPICS: "goim-push-topic:3:3"
     depends_on:
       - zookeeper
+    networks:
+      - app-tier
   
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
     restart: unless-stopped
+    networks:
+      - app-tier
   
   redis:
     image: redis:6.2.6-alpine
     ports:
       - "6379:6379"
     command: redis-server --requirepass Tlqm520
+    networks:
+      - app-tier
   
